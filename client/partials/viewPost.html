@@ -1,0 +1,7 @@
+<div ng-controller='postController' class='container'>
+	<div class='post'>
+		<h5 ng-bind='post.title' ng-click='viewPost(post._id)' class='post_title'></h5>
+		<p ng-bind='post.body' class='post_body'></p>
+		<div ng-bind='post.created' class='post_date'></div>
+	</div>
+</div>
