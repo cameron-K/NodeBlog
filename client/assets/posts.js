@@ -1,9 +1,10 @@
-var nodeBlog=angular.module('nodeBlog',['ngRoute']);
+var nodeBlog=angular.module('nodeBlog',['ngRoute','ngSanitize']);
 nodeBlog.config(function($routeProvider){
   $routeProvider
   .when('/',{templateUrl:'/partials/posts.html'})
   .when('/new',{templateUrl: '/partials/newPost.html'})
   .when('/view/:id',{templateUrl:'/partials/viewPost.html'})
+  .when('/edit/:id',{templateUrl:'partials/editPost.html'})
   .otherwise({
     redirectTo:'/'
   })
@@ -35,14 +36,28 @@ nodeBlog.factory('postFactory',function($http,$location){
     });
   };
 
+  factory.updatePost=function(update){
+    $http.post('/updatepost',update).success(function(){
+      $location.path('/view/'+update.post_id);
+    })
+  }
+
+  factory.deletePost=function(id){
+    $http.post('/deletepost',{id:id}).success(function(){
+      $location.path('/');
+    })
+  }
+
   return factory; 
 });
 
 
 nodeBlog.controller('postsController',function($scope,postFactory,$location){
 
-  $scope.posts=[];
-  postFactory.getPosts(function(data){$scope.posts=data;});
+  // function getPosts(){
+    $scope.posts=[];
+    postFactory.getPosts(function(data){$scope.posts=data;});    
+  // }
 
   
   $scope.newPost=function(){
@@ -50,9 +65,7 @@ nodeBlog.controller('postsController',function($scope,postFactory,$location){
     $scope.posts.push($scope.new_post);
   };
 
-  // $scope.viewPost=function(id){
-  //   $location.path('/view/'+id);
-  // }
+  
 
 
 })
@@ -60,10 +73,32 @@ nodeBlog.controller('postsController',function($scope,postFactory,$location){
 nodeBlog.controller('postController',function($scope,postFactory,$routeParams){
 
     $scope.post={};
+    $scope.update={};
+
     postFactory.getPost($routeParams.id,function(data){
       $scope.post={};
       $scope.post=data;
+      $scope.update=data;
     });
+
+    $scope.updatePost=function(){
+      $scope.update.post_id=$routeParams.id;
+      postFactory.updatePost($scope.update);
+    }
+
+    $scope.confirmDeletion=function(){
+      document.getElementById('confirm_delete_post').style.display='none';
+      document.getElementById('delete_post').style.display='inline';
+      document.getElementById('cancel_deletion').style.display='inline';
+    }
+    $scope.cancelDeletion=function(){
+      document.getElementById('confirm_delete_post').style.display='inline';
+      document.getElementById('delete_post').style.display='none';
+      document.getElementById('cancel_deletion').style.display='none';
+    }
+    $scope.deletePost=function(id){
+      postFactory.deletePost(id);
+    }
 
 })
 

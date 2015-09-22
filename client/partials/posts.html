@@ -1,12 +1,12 @@
 <div ng-controller='postsController' class='container'>
 	
-	<a class='post_link' ng-repeat='post in posts' href="#/view/{{post._id}}" >
-		<div class="posts">
-			
-				<h5 ng-bind='post.title' ng-click='viewPost(post._id)' class='post_title'></h5>
-				<p ng-bind='post.body' class='post_body'></p>
-				<div ng-bind='post.created' class='post_date'></div>
-			
-		</div>
-	</a>
+	<div class="posts" ng-repeat='post in posts.slice().reverse()'>
+		<a class='post_link' href="#/view/{{post._id}}" >
+			<h5 ng-bind='post.title' ng-click='viewPost(post._id)' class='post_title'></h5>
+			<p ng-bind-html='post.summary' class='post_summary'></p>
+			<div ng-bind='post.created' class='post_date'></div>
+		</a>
+	</div>
+	
 </div>
+

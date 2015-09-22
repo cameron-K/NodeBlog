@@ -1,0 +1,8 @@
+<div ng-controller='postController' class='container'>
+	<div class='post'>
+		<input class='input_title' type='text' ng-model='update.title'>
+		<textarea rows='5' cols='50' class='input_summary' type='text' ng-model='update.summary'></textarea>
+		<textarea rows='5' cols='50' class='input_body' type='text' ng-model='update.body'></textarea>
+		<input class='input_submit' type='button' ng-click='updatePost()' value='Finish'>
+	</div>
+</div>

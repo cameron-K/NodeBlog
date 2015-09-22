@@ -1,7 +1,13 @@
 <div ng-controller='postController' class='container'>
 	<div class='post'>
-		<h5 ng-bind='post.title' ng-click='viewPost(post._id)' class='post_title'></h5>
-		<p ng-bind='post.body' class='post_body'></p>
+		<div id='edit_delete'>
+			<a href="#/edit/{{post._id}}">Edit</a>
+			<a href="" id='confirm_delete_post' ng-click='confirmDeletion()'>Delete?</a>
+			<a href="" id='delete_post' ng-click='deletePost(post._id)'>Confirm Deletion</a>
+			<a href="" id='cancel_deletion' ng-click='cancelDeletion(post._id)'>Cancel</a>
+		</div>
+		<h5 ng-bind='post.title' class='post_title'></h5>
+		<p ng-bind-html='post.body' class='post_body'></p>
 		<div ng-bind='post.created' class='post_date'></div>
 	</div>
 </div>
