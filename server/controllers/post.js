@@ -4,7 +4,7 @@ module.exports=(function(){
 
 	return {
 		getPosts:function(req,res){
-			Post.find({},function(err,posts){
+			Post.find({},null,{sort:'-created'},function(err,posts){
 				if(err) console.log(err)
 				else res.json(posts);
 			});

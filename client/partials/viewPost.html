@@ -1,4 +1,5 @@
 <div ng-controller='postController' class='container'>
+	<a href="/">&#8612;&nbsp;&nbsp;&nbsp;Back</a>
 	<div class='post'>
 		<div id='edit_delete'>
 			<a href="#/edit/{{post._id}}">Edit</a>
@@ -7,7 +8,8 @@
 			<a href="" id='cancel_deletion' ng-click='cancelDeletion(post._id)'>Cancel</a>
 		</div>
 		<h5 ng-bind='post.title' class='post_title'></h5>
+		<div class='post_date'>{{post.created | date:'medium'}}</div>
 		<p ng-bind-html='post.body' class='post_body'></p>
-		<div ng-bind='post.created' class='post_date'></div>
+		<div>Updated: {{post.updated | date:'medium'}}</div>
 	</div>
 </div>
