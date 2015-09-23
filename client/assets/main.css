@@ -24,7 +24,7 @@
 	background: -webkit-linear-gradient(left,rgba(74, 74, 74, 1),rgba(57, 56, 56, 0.5), rgba(46, 47, 47, 1));
 	background: -o-linear-gradient(right,rgba(74, 74, 74, 1),rgba(57, 56, 56, 0.5), rgba(46, 47, 47, 1));
 	background: -moz-linear-gradient(right,rgba(74, 74, 74, 1),rgba(57, 56, 56, 0.5), rgba(46, 47, 47, 1));
-	background: linear-gradient(to right,rgba(74, 74, 74, 1),rgba(57, 56, 56, 0.5), rgba(46, 47, 47, 1));
+	background: linear-gradient(to right,rgba(74, 74, 74, 1),rgba(128, 189, 1, 0.5), rgba(46, 47, 47, 1));
 	margin-top: 21vh;
 	border-bottom: 1px solid #80BD01;
 	text-align: right;
@@ -104,7 +104,9 @@ body{
 
 .posts{
 	width: 80%;
-	margin:40px auto;
+	margin:30px auto;
+	margin-bottom: 50px;
+	border:1px solid #bbb;
 	/*opacity:.5;*/
 	/*setting opacity sets opacity for all children, setting background:rgba does not effect children*/
 	border-radius: 5px;
